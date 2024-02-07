@@ -51,9 +51,14 @@ export const database: interfaces.Database = {
 
         const closeDB = new Promise<Boolean>((resolve) => {
             db.run("FORCE CHECKPOINT");
-            db.close();
+            db.close((error) => {
+                if (error) {
+                    console.log("===== Error closing db =====");
+                    console.log(error);
+                }
 
-            resolve(true);
+                resolve(true)
+            });
         })
 
         const closed = await closeDB;
