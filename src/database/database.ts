@@ -26,11 +26,6 @@ if (process.env.NODE_ENV == 'development') {
 //     }
 // );
 
-// async function closeDB(db: DuckDB.Database) {
-//     db.close();
-//     return(true);
-// }
-
 export const database: interfaces.Database = {
 
     get_df: async function (): Promise<Array<interfaces.DFList>> {
