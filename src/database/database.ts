@@ -26,6 +26,10 @@ if (process.env.NODE_ENV == 'development') {
 //     }
 // );
 
+// async function closeDB(db: DuckDB.Database) {
+//     db.close();
+//     return(true);
+// }
 
 export const database: interfaces.Database = {
 
@@ -50,8 +54,15 @@ export const database: interfaces.Database = {
 
         const result = await connection;
 
-        db.run("FORCE CHECKPOINT");
-        db.close();
+        const closeDB = new Promise<Boolean>((resolve) => {
+            db.run("FORCE CHECKPOINT");
+            db.close();
+
+            resolve(true);
+        })
+
+        const closed = await closeDB;
+        console.log("closed: " + closed);
 
         return result;
     }
