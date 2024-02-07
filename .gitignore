@@ -5,5 +5,4 @@ log-*
 build/
 log.txt
 settings.json
-package-lock.json
 test.duckdb.wal
