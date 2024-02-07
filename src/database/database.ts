@@ -50,20 +50,20 @@ export const database: interfaces.Database = {
         const result = await connection;
 
         const closeDB = new Promise<Boolean>((resolve) => {
-            db.run("FORCE CHECKPOINT");
-            db.close((error) => {
-                if (error) {
-                    console.log("===== Error closing db =====");
-                    console.log(error);
+            db.close((err,res) => {
+                if (err) {
+                    console.log(err);
+                    resolve(false);
+                    return;
                 }
-
-                resolve(true)
-            });
+                console.log("closed?");
+                console.log(res);
+                resolve(true);
+            } );
         })
 
-        const closed = await closeDB;
-        console.log("closed: " + closed);
-
+        const response = await closeDB;
+        console.log(response);
         return result;
     }
 }
