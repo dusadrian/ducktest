@@ -1,9 +1,9 @@
 
 export interface DFList {
-	id: number;
-	v1: string;
-	v2: string;
-	obs: string;
+	Area: number;
+	Gender: string;
+	Age: string;
+	Children: string;
 }
 
 export interface Database {
